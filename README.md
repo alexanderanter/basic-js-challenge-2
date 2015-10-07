@@ -170,7 +170,7 @@ Så finns det `\n` efter `<head>` följt av två mellanslag på nästa rad. Dett
 Din uppgift blir alltså främst att skriva koden i filerna node.js och treeview.js. Hur du väljer att strukturera upp det
 är upp till dig men vissa saker kommer de tester som finns styra. I exemplet ovan har vi en stryktur som är 7 nivåer djup. I HTML kan vi dock göra oändligt djupa strukturer så för att lösa denna laborationsuppgift kommer du att behöva använda konstruktionen [rekursion](http://eloquentjavascript.net/03_functions.html#h_jxl1p970Fy).
 
-####Node.js
+####node.js
 I denna fil ska du skriva kod som ger möjlighet att skapa objekt av typen *Node*. Konstruktorn ska ta tre olika parametrar,
 *name, level, text*. Name är namnet på elementet, level är på vilken nivå i dokumentet den befinner sig och text är
 eventuell text elementet innehåller.
@@ -178,7 +178,7 @@ eventuell text elementet innehåller.
 Objektet ska ha en metod *toString* som returnerar noden beskrivet som en textsträng i jade-format, med korrekt elementnamn,
 rätt nivå(intabbning) och eventuell text.
 
-####Treeview.js
+####treeview.js
 Om Node representerar den enskilda noden i dokumentet så representerar TreeView själva dokumentet. Typen TreeViews uppgift
 är att handha *en array med noder* (sorterade i den ordning de förekommer i dokumentet). Dessa noder skapas via typen Node
 och detta görs i metoden *generateNodeObjects* som tar det komplexa javascriptobjektet du ska analysera som inparameter. generateNodeObjects skapar utifrån detta Node-instanser.
