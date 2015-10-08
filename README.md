@@ -10,13 +10,11 @@
 
 
 ###Introduktion till uppgiften
-Att arbeta med HTML är du säkert redan bekant med. Det finns olika så kallade ("html template engines")[https://en.wikipedia.org/wiki/Web_template_system] som används
-för att, helst på ett förenklat och mer dynamiskt sätt, skapa HTML-kod utifrån specifika mallar. Användningsfall för
-detta är t.ex. när man renderar ut HTML från en serverbaserad webbapplikation eller när man använder så kallade ["static site generators"](https://staticsitegenerators.net/).
+Att arbeta med HTML är du säkert redan bekant med. Det finns olika så kallade ("html template engines")[https://en.wikipedia.org/wiki/Web_template_system] som används för att, helst på ett förenklat och mer dynamiskt sätt, skapa HTML-kod utifrån specifika mallar. Användningsfall för detta är t.ex. när man renderar ut HTML från en serverbaserad webbapplikation eller när man använder så kallade ["static site generators"](https://staticsitegenerators.net/).
 Det finns en mängd [olika template-motorer](https://en.wikipedia.org/wiki/Comparison_of_web_template_engines) t.ex. Jade, handlebars och liquid.
 
-Oftast skriver man mallarna och genererar HTML-kod utifrån dessa. I denna uppgift ska vi dock gå andra hållet genom att läsa in
-ett HTML-dokument och generera ett javascript-objekt som beskriver dokumentets uppbyggnad (detta behöver ni inte skriva kod för) och utifrån detta objekt skapa en enkel [Jade-mall](http://jade-lang.com/). Hur mallen ska se ut definieras av de tester som medföljer.
+Oftast skriver utvecklaren mallarna och sedan genereras HTML-kod utifrån dessa. I denna uppgift ska du dock gå andra hållet genom att läsa in
+ett HTML-dokument, generera ett javascript-objekt som beskriver dokumentets uppbyggnad (detta steg är redan genomfört) och utifrån detta komplexa javascriptobjekt skapa en enkel [Jade-mall](http://jade-lang.com/). Hur mallen ska se ut definieras av de tester som medföljer.
 Vi kommer skriva en enklare variant av Jade där vi inte tar hänsyn till t.ex. html-attribut. Denna förenklade version visas i exemplet nedan.
 
 
@@ -85,35 +83,32 @@ Följande syntaxregler kan vi se och ska vi ta fasta på i denna uppgift:
 * Ett element skapas genom att skriva ut elementnamnet och placera det på rätt nivå (intabbning `\t`)
 * Har ett element text i sig skrivs texten ut efter elementnamnet
 * I de fall elementet är skrivet på ett indenterat sätt och har flera textrader (flera `\n`) ska elementnamnet följas av en punkt och
-textraderna indenteras en nivå.
+textraderna indenteras en nivå. (se p.)
 
-Uppgiften går alltså ut på att TreeViews toString-metod ska returnera en motsvarande textsträng utifrån ett komplext
-javascript-objekt som skickas in som argument till metoden generateNodeObjects.
+Uppgiften går alltså ut på att TreeViews toString-metod ska returnera en motsvarande textsträng utifrån ett komplext javascript-objekt som skickas in som argument till metoden generateNodeObjects.
 
 
 ###Repositoriet
 Det repositorie du får består av ett antal filer. Dels har vi såklart testfilerna, precis som vanligt.
 Dock kanske vi inte testar all funktionalitet denna gång utan ger er viss frihet till er implementation.
-Vi har också en fil, app.js, som fungerar som själva applikationsfilen. Den är fördefinerad och kommer anropa
-din kod och i slutändan skriva ut resultatet. Du kan använda den som en fil att testa/laborera i om du vill.
+Vi har också en fil, `app.js`, som fungerar som själva applikationsfilen. Den är fördefinerad och kommer anropa din kod och i slutändan skriva ut resultatet. Du kan använda den som en fil att testa/laborera i om du vill. `app.js` läser in html-filer från katalogen `html` och du kan själv lägga till egna html-filer om du vill eller använda de fördefinierade.
 
 Studerar man koden i app.js så ser man att den skapar ett objekt av typen `TreeView` och anropar dess metod
-`generateNodeObjects`. Metoden anropas med två argument, dels det förberedda javascriptobjektet som Du ska
-arbeta vidare med i din kod och dels en level/nivå. Med "level" menas den nivå i dokumentstrukturen man befinner sig på.
+`generateNodeObjects`. Metoden anropas med två argument, dels det förberedda javascriptobjektet som Du ska arbeta vidare med i din kod och dels en level/nivå. Med "level" menas den nivå i dokumentstrukturen man befinner sig på.
 
 ```
 <html>
     <head>
         <title>Titel</title>
 ```
-I exemplet ovan är  html på nivå 0, head på nivå 1 och title på nivå 2. Som ni ser motsvarar detta tabtecken i jade.
+I exemplet ovan är  html på nivå 0, head på nivå 1 och title på nivå 2. Som du ser motsvarar detta tabtecken i jade.
 
 #### Mellansteget, ett komplext javascriptobjekt
 Du kommer inte få ren text i form av HTML utan för att kunna hantera detta i vårt javascript så är uppgiften förenklad och du får tillgång till ett komplext javascriptobjekt som beskriver HTML-dokumentet och dess struktur. Det är det javascriptobjekt du ser som argument två i anropet till generateNodeObjects.
 Din uppgift blir att skapa metoden och där analysera detta objekt (debuggern är ett hett tips!).
 
 Betrakta följande dump gjord med debuggern i webstorm:
-![Beskrivning av det komplexa objektet](pic/complexobject.png)
+![Beskrivning av det komplexa objektet](https://raw.githubusercontent.com/1dv021/examination-2/master/pic/complexobject.png)
 
 1. Detta är grundobjektet som är det vi börjar arbeta med. Första nivån. *name* är en egenskap på objektet tillsammans exempelvis arrayen *children* och *type* (type syns inte i bilden). 
 2. Arrayen children beskriver vilka noder som finns under den överliggande noden. I detta fall ser vi att *head* och *body* är barn till *html*.
@@ -165,12 +160,12 @@ Om du analyserar objektet så kommer du att finna att många html-element har te
 <head>
   <title>Titel</title>
 ```
-Så finns det `\n` efter `<head>` följt av två mellanslag på nästa rad. Detta kommer att bli ett element i det komplexa javascriptobjektet, men vi vill inte skriva ut detta i vår Jade-representation. Därför måste vi filtrera bort dessa element när vi går igenom det komplexa javascriptobjektet. för att göra detta kan det vara bra att titta på funktionen [`trim()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/Trim)
+Så finns det `\n` efter `<head>` följt av två mellanslag på nästa rad. Detta kommer att bli ett element i det komplexa javascriptobjektet, men vi vill inte skriva ut detta i vår Jade-representation. Därför måste vi filtrera bort dessa element när vi går igenom det komplexa javascriptobjektet. För att göra detta kan det vara bra att titta på funktionen [`trim()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/Trim).
 
 Din uppgift blir alltså främst att skriva koden i filerna node.js och treeview.js. Hur du väljer att strukturera upp det
 är upp till dig men vissa saker kommer de tester som finns styra. I exemplet ovan har vi en stryktur som är 7 nivåer djup. I HTML kan vi dock göra oändligt djupa strukturer så för att lösa denna laborationsuppgift kommer du att behöva använda konstruktionen [rekursion](http://eloquentjavascript.net/03_functions.html#h_jxl1p970Fy).
 
-####node.js
+####Node.js
 I denna fil ska du skriva kod som ger möjlighet att skapa objekt av typen *Node*. Konstruktorn ska ta tre olika parametrar,
 *name, level, text*. Name är namnet på elementet, level är på vilken nivå i dokumentet den befinner sig och text är
 eventuell text elementet innehåller.
@@ -178,9 +173,12 @@ eventuell text elementet innehåller.
 Objektet ska ha en metod *toString* som returnerar noden beskrivet som en textsträng i jade-format, med korrekt elementnamn,
 rätt nivå(intabbning) och eventuell text.
 
-####treeview.js
+####Treeview.js
 Om Node representerar den enskilda noden i dokumentet så representerar TreeView själva dokumentet. Typen TreeViews uppgift
-är att handha *en array med noder* (sorterade i den ordning de förekommer i dokumentet). Dessa noder skapas via typen Node
+är att handha *en array innehållande objekt av typen Node* (sorterade i den ordning de förekommer i dokumentet). Dessa noder skapas via typen Node
 och detta görs i metoden *generateNodeObjects* som tar det komplexa javascriptobjektet du ska analysera som inparameter. generateNodeObjects skapar utifrån detta Node-instanser.
 
 Objektet ska också ha metoden *toString* som returnerar en sträng som representerar hela jadedokumentet tillskillnad från toString i Node som enbart representerade en node.
+
+##tl;dr
+Givet är ett objekt N som motsvarar en HTML-struktur. Objektet innehåller bland annat *name* (string), *type* (string) och en array *children* där varje element är av typen N. Skapa en sträng som motsvarar Jade-strukturen av detta objekt. Typen Node ska motsvara ett objekt N och TreeView ska ge outputen av samtliga (undantaget "tomma" `\n   `) N.
