@@ -38,7 +38,7 @@ describe("Node", function() {
                 expect(node.toString()).to.equal("\t\tp Lorem ipsum");
             });
 
-            it("Multi line of text: new Node(\"p\", 2, \"\nLorem ipsum\nMid magnis\nTristique mauris proin\") should return \"\\t\\tp.\\n\\t\\t\\tLorem ipsum\\n\\t\\t\\tMid magnis\\n\\t\\t\\tTristique mauris proin", function() {
+            it("Multi line of text: new Node(\"p\", 2, \"\\nLorem ipsum\\nMid magnis\\nTristique mauris proin\") should return \"\\t\\tp.\\n\\t\\t\\tLorem ipsum\\n\\t\\t\\tMid magnis\\n\\t\\t\\tTristique mauris proin", function() {
                 node = new Node("p", 2, "\nLorem ipsum\nMid magnis\nTristique mauris proin");
                 expect(node.toString()).to.equal("\t\tp.\n\t\t\tLorem ipsum\n\t\t\tMid magnis\n\t\t\tTristique mauris proin");
             });
