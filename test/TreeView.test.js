@@ -22,13 +22,6 @@ describe("TreeView", function() {
         });
     });
 
-    //describe("Constructor", function() {
-    //    it("should have property nodes", function() {
-    //        treeView = new TreeView();
-    //        expect(treeView).to.have.property("nodes");
-    //    });
-    //});
-
     describe("Prototype", function() {
         describe("toString method", function() {
             it("should be defined as an own property", function() {
