@@ -18,7 +18,7 @@ describe("TreeView", function() {
 
     describe("Type", function() {
         it("TreeView should be defined", function() {
-            TreeView = require("./../../../src/part-2/exam/TreeView");
+            TreeView = require("./../src/   TreeView");
         });
     });
 

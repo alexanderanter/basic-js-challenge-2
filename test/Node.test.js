@@ -13,26 +13,9 @@ describe("Node", function() {
 
     describe("Type", function() {
         it("Node should be defined", function() {
-            Node = require("./../../../src/part-2/exam/Node");
+            Node = require("./../src/Node");
         });
     });
-
-    //describe("Constructor", function() {
-    //    it("should set the property tagName to html", function() {
-    //        node = new Node("html");
-    //        expect(node).to.have.property("tagName", "html");
-    //    });
-    //
-    //    it("should set the property level to 0", function() {
-    //        node = new Node("p", 3);
-    //        expect(node).to.have.property("level", 3);
-    //    });
-    //
-    //    it("should set the property text to \"lorem ipsum\"", function() {
-    //        node = new Node("p", 0, "lorem ipsum");
-    //        expect(node).to.have.property("text", "lorem ipsum");
-    //    });
-    //});
 
     describe("Prototype", function() {
         describe("toString method", function() {
