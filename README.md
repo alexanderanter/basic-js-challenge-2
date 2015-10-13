@@ -93,8 +93,7 @@ Det repositorie du får består av ett antal filer. Dels har vi såklart testfil
 Dock kanske vi inte testar all funktionalitet denna gång utan ger er viss frihet till er implementation.
 Vi har också en fil, `app.js`, som fungerar som själva applikationsfilen. Den är fördefinerad och kommer anropa din kod och i slutändan skriva ut resultatet. Du kan använda den som en fil att testa/laborera i om du vill. `app.js` läser in html-filer från katalogen `html` och du kan själv lägga till egna html-filer om du vill eller använda de fördefinierade.
 
-Studerar man koden i app.js så ser man att den skapar ett objekt av typen `TreeView` och anropar dess metod
-`generateNodeObjects`. Metoden anropas med två argument, dels det förberedda javascriptobjektet som Du ska arbeta vidare med i din kod och dels en level/nivå. Med "level" menas den nivå i dokumentstrukturen man befinner sig på.
+Studerar man koden i app.js så ser man att den skapar ett objekt av typen `TreeView` och skickar med ett javascriptobjekt ("det komplexa javascriptobjektet" se nedan) som argument till dess konstruktorn. Du ska sedan i konstruktorn för `TreeView` skicka detta vidare till en funktion (exempelvis döpt till `generateNodeObjects`). Metoden bör kunna anropas med två argument, dels det förberedda javascriptobjektet som Du ska arbeta vidare med i din kod och dels en level/nivå. Med "level" menas den nivå i dokumentstrukturen man befinner sig på.
 
 ```
 <html>
@@ -104,7 +103,7 @@ Studerar man koden i app.js så ser man att den skapar ett objekt av typen `Tree
 I exemplet ovan är  html på nivå 0, head på nivå 1 och title på nivå 2. Som du ser motsvarar detta tabtecken i jade.
 
 #### Mellansteget, ett komplext javascriptobjekt
-Du kommer inte få ren text i form av HTML utan för att kunna hantera detta i vårt javascript så är uppgiften förenklad och du får tillgång till ett komplext javascriptobjekt som beskriver HTML-dokumentet och dess struktur. Det är det javascriptobjekt du ser som argument två i anropet till generateNodeObjects.
+Du kommer inte få ren text i form av HTML utan för att kunna hantera detta i vårt javascript så är uppgiften förenklad och du får tillgång till ett komplext javascriptobjekt som beskriver HTML-dokumentet och dess struktur. Det är det javascriptobjekt du bör skicka som argument när du instansierar ett objekt av typen TreeView och senare skickar vidare till `generateNodeObjects`.
 Din uppgift blir att skapa metoden och där analysera detta objekt (debuggern är ett hett tips!).
 
 Betrakta följande dump gjord med debuggern i webstorm:
@@ -176,7 +175,7 @@ rätt nivå(intabbning) och eventuell text.
 ####Treeview.js
 Om Node representerar den enskilda noden i dokumentet så representerar TreeView själva dokumentet. Typen TreeViews uppgift
 är att handha *en array innehållande objekt av typen Node* (sorterade i den ordning de förekommer i dokumentet). Dessa noder skapas via typen Node
-och detta görs i metoden *generateNodeObjects* som tar det komplexa javascriptobjektet du ska analysera som inparameter. generateNodeObjects skapar utifrån detta Node-instanser.
+och detta görs i metoden *generateNodeObjects* som tar ett objekt som beskriver HTML-sturkturen samt en nivå som argument och utifrån detta skapar Node-instanser.
 
 Objektet ska också ha metoden *toString* som returnerar en sträng som representerar hela jadedokumentet tillskillnad från toString i Node som enbart representerade en node.
 
