@@ -3,8 +3,16 @@
 var Node = require("./Node");
 
 
-// TODO: Write your code here.
+function TreeView() {
 
+}
+
+TreeView.prototype.generateNodeObjects = function(htmlStructure, level){
+
+};
+TreeView.prototype.toString = function(htmlStructure, level){
+
+};
 
 // Exports
 module.exports = TreeView;

@@ -1,6 +1,11 @@
 "use strict";
 
-// TODO: Write your code here.
+function Node(name, level, text) {
 
+}
+
+Node.prototype.toString = function(){
+
+};
 // Exports
 module.exports = Node;
