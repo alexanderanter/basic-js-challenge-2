@@ -5,8 +5,8 @@ function Node(name, level, text) {
   this.level = level;
   this.text = text;
 }
-function repleaceString(toReplace, stringReplace, newString) {
-  var re = /toReplace/gi;
+function replaceString(stringReplace, toReplace, newString) {
+  var re = new RegExp(toReplace, "gi");
   var replaceWith = newString;
   var replacedString = stringReplace.replace(re, replaceWith);
   return replacedString;
@@ -28,13 +28,8 @@ Node.prototype.toString = function(){
     textString += " " + this.text;
   }
 
-  re = /\n/gi;
-  var replaceWith = "\n" + tabString + "\t";
-  var textString = textString.replace(re, replaceWith);
-  
-  re = / \n/gi;
-  replaceWith = ".\n";
-  textString = textString.replace(re, replaceWith);
+  textString = replaceString(textString, "\n", "\n" + tabString + "\t");
+  textString = replaceString(textString, " \n", ".\n");
 
   if(textString != "") {
       result += textString;
