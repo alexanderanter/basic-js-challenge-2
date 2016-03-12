@@ -3,7 +3,6 @@
 var parser = require("./parser");
 var TreeView = require("./src/TreeView");
 
-
 parser.htmlParse(__dirname + "/html/test1.html", function(err, result) {
     var treeView;
     var jadeStr;
