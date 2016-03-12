@@ -5,11 +5,17 @@ function Node(name, level, text) {
   this.level = level;
   this.text = text;
 }
-
+function repleaceString(toReplace, stringReplace, newString) {
+  var re = /toReplace/gi;
+  var replaceWith = newString;
+  var replacedString = stringReplace.replace(re, replaceWith);
+  return replacedString;
+}
 Node.prototype.toString = function(){
   var result = "";
   var tabString = "";
   var textString = "";
+  var re;
   for(var i = 0; i < this.level; i++) {
     tabString += "\t";
   }
@@ -21,19 +27,20 @@ Node.prototype.toString = function(){
   if(this.text){
     textString += " " + this.text;
   }
-  var beginSlice = textString.indexOf("\n");
-  var startNextSlice = textString.indexOf("\n") + 1;
 
-  // var endSlice = textString.indexOf("\n") + 1;
-
-  textString = textString.slice(beginSlice);
+  re = /\n/gi;
+  var replaceWith = "\n" + tabString + "\t";
+  var textString = textString.replace(re, replaceWith);
+  
+  re = / \n/gi;
+  replaceWith = ".\n";
+  textString = textString.replace(re, replaceWith);
 
   if(textString != "") {
       result += textString;
   }
-
-  return textString;
-  // return result;
+  // return textString;
+  return result;
 };
 // Exports
 module.exports = Node;
