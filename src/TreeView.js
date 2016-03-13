@@ -20,7 +20,9 @@ TreeView.prototype.generateNodeObjects = function(htmlStructure, level) {
         nodeObjects.push(htmlStructure.name);
 
       for(var j = 0; j < htmlStructure.children.length; j++) {
-
+        console.log(htmlStructure.children[j].name);
+        console.log(level);
+        console.log(htmlStructure.children[j].data);
         nodeObjects.push(new Node(htmlStructure.children[j].name, level, htmlStructure.children[j].data))
         // treeString += wopp.toString();
         // treeString += "\n" + levelString;
