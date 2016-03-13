@@ -2,37 +2,41 @@
 
 var Node = require("./Node");
 // private
-var treeString = "";
+
 
 function TreeView(htmlObject) {
-  var result = [];
-  result = this.generateNodeObjects(htmlObject, 0);
-  return result;
+  this.treeStructure = this.generateNodeObjects(htmlObject, 0);
 }
 
 TreeView.prototype.generateNodeObjects = function(htmlStructure, level) {
   var levelString = "";
-  if(!level) {
-      treeString += "doctype html\n";
-      level = 1;
-    }
-  // for(var i = 0; i < level; i++) {
-  //   levelString += "\t";
-  // }
+  var nodeObjects = [];
 
   if(htmlStructure.name && htmlStructure.name !== undefined) {
+        // treeString += htmlStructure.name +"\n";
+        // for(var i = 0; i < level; i++) {
+        //   treeString += "\t";
+        // }
+        nodeObjects.push(htmlStructure.name);
 
       for(var j = 0; j < htmlStructure.children.length; j++) {
-        var wopp = new Node(htmlStructure.children[j].name, level, htmlStructure.children[j].data);
 
-        treeString += wopp.toString();
+        nodeObjects.push(new Node(htmlStructure.children[j].name, level, htmlStructure.children[j].data))
+        // treeString += wopp.toString();
         // treeString += "\n" + levelString;
         this.generateNodeObjects(htmlStructure.children[j], level + 1);
       }
+ // console.log(nodeObjects);
+   return nodeObjects;
   }
+  // console.log(nodeObjects);
+
 };
 
-TreeView.prototype.toString = function(htmlStructure, level){
+TreeView.prototype.toString = function(){
+  var treeString = "";
+  console.log(this.treeStructure);
+
   return treeString;
 };
 
