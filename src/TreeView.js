@@ -2,7 +2,7 @@
 
 var Node = require("./Node");
 // private
-var treeString;
+var treeString = "";
 
 function TreeView(htmlObject) {
   var result = [];
@@ -13,16 +13,19 @@ function TreeView(htmlObject) {
 TreeView.prototype.generateNodeObjects = function(htmlStructure, level) {
   var levelString = "";
   if(!level) {
+      treeString += "doctype html\n";
       level = 1;
     }
-  for(var i = 0; i < level; i++) {
-    levelString += "\t";
-  }
-  if(htmlStructure.name) {
+  // for(var i = 0; i < level; i++) {
+  //   levelString += "\t";
+  // }
+
+  if(htmlStructure.name && htmlStructure.name !== undefined) {
 
       for(var j = 0; j < htmlStructure.children.length; j++) {
         var wopp = new Node(htmlStructure.children[j].name, level, htmlStructure.children[j].data);
-        treeString += wopp.name;
+
+        treeString += wopp.toString();
         // treeString += "\n" + levelString;
         this.generateNodeObjects(htmlStructure.children[j], level + 1);
       }
