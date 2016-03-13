@@ -21,9 +21,9 @@ Node.prototype.toString = function(){
   }
 
   result += tabString;
+
   if(this.name) {
     result += this.name;
-    console.log(this.name);
   }
 
   if(this.text) {
