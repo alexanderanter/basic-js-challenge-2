@@ -23,14 +23,23 @@ TreeView.prototype.generateNodeObjects = function(htmlStructure, level) {
         for (var l = 0; l < level; l++) {
             nodeArray.push("\t");
         }
+
         nodeArray.push(htmlStructure.name);
+        if (level === 2) {
+            nodeArray.push(" ");
+        }
+
     }
+
 
 
     if (htmlStructure.children) {
 
         var i;
         for (i = 0; i < htmlStructure.children.length; i++) {
+            if(htmlStructure.children[i].name || htmlStructure.children[i].tag){
+
+            }
             if (htmlStructure.children[i].data) {
                 nodeArray.push(htmlStructure.children[i].data);
             }
