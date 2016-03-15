@@ -5,12 +5,12 @@ var Node = require("./Node");
 
 
 function TreeView(htmlObject) {
-  this.treeStructure = this.generateNodeObjects(htmlObject, 0);
+    this.treeStructure = this.generateNodeObjects(htmlObject, 0);
 }
 
 TreeView.prototype.generateNodeObjects = function(htmlStructure, level) {
-  var levelString = "";
-  var nodeObjects = [];
+    var levelString = "";
+    var nodeObjects = [];
 
   if(htmlStructure.name && htmlStructure.name !== undefined) {
         // treeString += htmlStructure.name +"\n";
@@ -19,27 +19,29 @@ TreeView.prototype.generateNodeObjects = function(htmlStructure, level) {
         // }
         nodeObjects.push(htmlStructure.name);
 
-      for(var j = 0; j < htmlStructure.children.length; j++) {
-        console.log(htmlStructure.children[j].name);
-        console.log(level);
-        console.log(htmlStructure.children[j].data);
-        nodeObjects.push(new Node(htmlStructure.children[j].name, level, htmlStructure.children[j].data))
-        // treeString += wopp.toString();
-        // treeString += "\n" + levelString;
-        this.generateNodeObjects(htmlStructure.children[j], level + 1);
-      }
- // console.log(nodeObjects);
-   return nodeObjects;
-  }
+        for (var j = 0; j < htmlStructure.children.length; j++) {
+            console.log(htmlStructure.children[j].name);
+            console.log(level);
+            console.log(htmlStructure.children[j].data);
+            nodeObjects.push(new Node(htmlStructure.children[j].name, level, htmlStructure.children[j].data))
+            // treeString += wopp.toString();
+            // treeString += "\n" + levelString;
+            this.generateNodeObjects(htmlStructure.children[j], level + 1);
+        }
+
+        // console.log(nodeObjects);
+        return nodeObjects;
+    }
+
   // console.log(nodeObjects);
 
 };
 
 TreeView.prototype.toString = function(){
-  var treeString = "";
-  console.log(this.treeStructure);
+    var treeString = "";
+    console.log(this.treeStructure);
 
-  return treeString;
+    return treeString;
 };
 
 // Exports
