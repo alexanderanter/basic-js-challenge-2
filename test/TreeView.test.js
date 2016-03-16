@@ -51,3 +51,8 @@ describe("TreeView", function() {
         });
     });
 });
+
+
+
+Expected :"doctype html\nhtml\n\thead\n\t\ttitle Detta är en titel\n\tbody\n\t\th1 Detta är en rubrik\n\t\tdiv\n\t\t\tul\n\t\t\t\tli Hem\n\t\t\t\tli Kontakt\n\t\t\t\tli Kontakt\n\t\t\t\tli Kontakt\n\t\t\t\tli Kontakt\n\t\tdiv\n\t\t\tp Detta är ett stycke\n\t\t\t\tspan Som innehåller ett element\n\t\t\th1 Detta är en rubrik\n\t\t\tp.\n\t\t\t\tDetta är ett stycke\n\t\t\t\tmed\n\t\t\t\tmånga\n\t\t\t\trader\n"
+Actual   :"doctype html\nhtml\nhead\t\ntitle\t\tTitel\n\nbody\t\np\t\tParagraph tag\n\nhtml\nhead\t\ntitle\t\tDetta är en titel\n\nbody\t\nh1\t\tDetta är en rubrik\ndiv\t\t\nul\t\t\t\n    li\t\t\t\tHem\n    li\t\t\t\tKontakt\n    li\t\t\t\tKontakt\n    li\t\t\t\tKontakt\n    li\t\t\t\tKontakt\n\n\ndiv\t\t\np\t\t\tDetta är ett stycke\n    span\t\t\t\tSom innehåller ett element\n\nh1\t\t\tDetta är en rubrik\np\t\t\t\n    Detta är ett stycke\n    med\n    många\n    rader\n\n\n\n"

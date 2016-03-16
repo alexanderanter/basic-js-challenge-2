@@ -12,33 +12,36 @@ function replaceString(stringReplace, oldString, newString) {
 }
 
 Node.prototype.toString = function(){
-  var result = "";
-  var tabString = "";
-  var textString = "";
+    var result = "";
+    var tabString = "";
+    var textString = "";
 
-  for(var i = 0; i < this.level; i++) {
-    tabString += "\t";
-  }
+    for (var i = 0; i < this.level; i++) {
+        tabString += "\t";
+    }
 
-  result += tabString;
+    result += tabString;
 
-  if(this.name) {
-    result += this.name;
-  }
+    if (this.name) {
+        result += this.name;
+    }
 
-  if(this.text) {
-    textString += " " + this.text;
-  }
+    if (this.text) {
+        textString += " " + this.text;
+    }
+
 //first repleace all \n with correct tab value
-  textString = replaceString(textString, "\n", "\n" + tabString + "\t");
+    textString = replaceString(textString, "\n", "\n" + tabString + "\t");
 // then check for any line breaks that leads with a whitespace and replace that whitespace with a full stop.
-  textString = replaceString(textString, " \n", ".\n");
+    textString = replaceString(textString, " \n", ".\n");
 
-  if(textString !== "") {
-      result += textString;
-  }
+    if (textString !== "") {
+        result += textString;
+    }
+
   // return textString;
   return result;
 };
+
 // Exports
 module.exports = Node;
